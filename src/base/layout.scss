@@ -32,8 +32,11 @@ section {
     bottom: 0;
     left: 0;
     min-height: 100vh;
-	/* mobile viewport bug fix */
-	min-height: -webkit-fill-available;
+    // This targets Safari on iOS and fixes the issue where 100vh doesn't factor in browser UI elements like navbars etc.
+    // https://allthingssmitty.com/2020/05/11/css-fix-for-100vh-in-mobile-webkit/
+    @supports (-webkit-touch-callout: none) {
+        min-height: -webkit-fill-available;
+    }
 }
 
 /* This works well with spans and maybe even hr */
